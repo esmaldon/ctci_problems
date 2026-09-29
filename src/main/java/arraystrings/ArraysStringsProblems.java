@@ -77,4 +77,29 @@ public class ArraysStringsProblems {
         });
         return countOdds.get() % 2 == 0;
     }
+
+    //Problem: Implement a method to perform basic string compression using the counts of repeated characters
+    public static String stringCompression(String str) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < str.length(); ) {
+            int count = 1;
+            for(int j = i + 1; j < str.length(); ) {
+                if(str.charAt(i) == str.charAt(j)) {
+                    count++;
+                    j++;
+                } else {
+                    sb.append(str.charAt(i));
+                    sb.append(count);
+                    i += count;
+                    break;
+                }
+                if(j == str.length()) {
+                    sb.append(str.charAt(i));
+                    sb.append(count);
+                    i += count;
+                }
+            }
+        }
+        return sb.toString();
+    }
 }
